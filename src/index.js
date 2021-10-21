@@ -15,21 +15,22 @@ class App extends React.Component {
             errorMessage:""
          };
 
-        window.navigator.geolocation.getCurrentPosition(
-            (position)=> {
-                // we call setState
-                this.setState({
-                    lat:position.coords.latitude
-                });
-            },
-            (err) => {
-                this.setState({
-                    errorMessage : err.message
-                });
-            }
-        );
+
 
     }
+
+    componentDidMount(){
+        window.navigator.geolocation.getCurrentPosition(
+            (position)=>  this.setState({lat:position.coords.latitude})
+            ,
+            (err) =>this.setState({errorMessage : err.message})
+            
+        );
+    }
+
+    // componentDidUpdate(){
+    //     console.log('My component was rerendered');
+    // }
 
     render(){
 
